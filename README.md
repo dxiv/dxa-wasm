@@ -6,9 +6,11 @@ DEXA compiler compiled to **WebAssembly** for in-browser use: [dxa.dev](https://
 
 **Status:** This repo is a **placeholder**. The WASM crate is currently built inside [dxa-dev](https://github.com/dxiv/dxa-dev). When the monorepo is split, this repo will hold the WASM bindings and build so it can be versioned and consumed independently (e.g. by the website or other frontends).
 
+**What’s here now:** A minimal stub: `src/lib.rs` exports `runDexa(source)` via wasm-bindgen; it returns `{ ok: false, error: "Placeholder. Full implementation in dxa-dev until 1.0.0." }`. No dependency on dxa-compiler so it builds on its own. Run `cargo build --target wasm32-unknown-unknown` or `wasm-pack build --target web` to build the stub.
+
 ---
 
-## What it does
+## What it does (after split)
 
 - **Depends on:** The DEXA compiler ([dxa-compiler](https://github.com/dxiv/dxa-compiler)) — same pipeline (lex → parse → typecheck → lower → validate → interpret).
 - **Build:** Produces a WebAssembly module and a small JS glue layer via `wasm-pack`.
@@ -42,17 +44,19 @@ On `require` failure, `ok` is `false`, `error` is set, and `ast`/`ir` are still 
 
 ---
 
-## Build (after split)
+## Build
 
-Requires [Rust](https://rustup.rs) and [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) (`cargo install wasm-pack`).
+Requires [Rust](https://rustup.rs) and, for the full JS/WASM bundle, [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) (`cargo install wasm-pack`).
 
-This crate will depend on `dexa-compiler` (from [dxa-compiler](https://github.com/dxiv/dxa-compiler)) via path or published crate. Then:
-
+**Stub (current):**
 ```bash
+cargo build --target wasm32-unknown-unknown
+# or
 wasm-pack build --target web --out-dir pkg
 ```
+No dependency on dxa-compiler; the stub builds standalone.
 
-For the dxa.dev website (when it consumes this repo), the output is typically copied to the site’s static assets (e.g. `website/public/wasm/`), and the site loads the generated JS and WASM from there.
+**After split:** This crate will depend on `dexa-compiler` (from [dxa-compiler](https://github.com/dxiv/dxa-compiler)) via path or published crate. The dxa.dev website will consume the output (e.g. copy `pkg/` to `website/public/wasm/`).
 
 ---
 
