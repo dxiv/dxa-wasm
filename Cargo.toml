@@ -1,0 +1,13 @@
+[package]
+name = "dexa-compiler-wasm"
+version = "0.1.0"
+edition = "2021"
+description = "DEXA compiler as WebAssembly for the browser (placeholder until 1.0.0)."
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde-wasm-bindgen = "0.6"

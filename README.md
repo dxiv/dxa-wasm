@@ -1,5 +1,7 @@
 # dxa-wasm
 
+> **GitHub About:** DEXA compiler as WebAssembly for the browser. Developed in private monorepo until 1.0.0.
+
 DEXA compiler compiled to **WebAssembly** for in-browser use: [dxa.dev](https://dxa.dev) playground, AST/IR viewer, and any future browser-based tooling.
 
 **Status:** This repo is a **placeholder**. The WASM crate is currently built inside [dxa-dev](https://github.com/dxiv/dxa-dev). When the monorepo is split, this repo will hold the WASM bindings and build so it can be versioned and consumed independently (e.g. by the website or other frontends).
